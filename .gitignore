@@ -1,0 +1,9 @@
+/vendor/
+anotacoes.txt
+.env
+.docker/dbdata/
+.phpunit.result.cache
+/.idea
+/.vscode
+.bash_history
+/docs
