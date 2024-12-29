@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Core\Domain;
+namespace Tests\Unit\Core\Domain\ValueObject;
 
 use Core\Domain\ValueObject\ValueObjectUuid;
 use InvalidArgumentException;
