@@ -20,7 +20,7 @@ class CreateBatchBrandUseCase
     foreach ($input->data as $brand) {
       $brandEntity = new BrandEntity(
         name: $brand['name'],
-        logo: $brand['logo']
+        logo: $brand['logo'] ?? ''
       );
       array_push($brandEntities, $brandEntity);
     }

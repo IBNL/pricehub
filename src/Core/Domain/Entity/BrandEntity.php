@@ -19,6 +19,8 @@ class BrandEntity extends BaseEntity
   ) {
     parent::__construct();
 
+    $this->logo = $this->logo ?? '';
+
     $this->id = $this->id ?? ValueObjectUuid::create();
 
     $this->created_at = $this->created_at ?? new DateTime();

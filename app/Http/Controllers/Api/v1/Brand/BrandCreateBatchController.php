@@ -18,7 +18,7 @@ class BrandCreateBatchController extends Controller
     foreach ($request->all() as $item) {
       $data[] = [
         'name' => $item['name'],
-        'logo' => $item['logo'],
+        'logo' => $item['logo'] ?? '',
       ];
     }
 

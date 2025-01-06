@@ -36,6 +36,13 @@ class BrandEntityUnitTest extends TestCase
         'name' => 'new brand',
         'logo' => ''
       ],
+      'valid name and without logo' => [
+        'name' => 'new brand',
+      ],
+      'valid name and logo null' => [
+        'name' => 'new brand',
+        'logo' => null
+      ],
     ];
   }
 
