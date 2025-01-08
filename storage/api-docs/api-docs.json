@@ -1,0 +1,167 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "PriceHub",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/v1/brand/create-batch": {
+            "post": {
+                "tags": [
+                    "Brand"
+                ],
+                "operationId": "0f045c2b5a5c927005c5fae5507fa186",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "brand1"
+                                        },
+                                        "logo": {
+                                            "type": "string",
+                                            "example": "logo1"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "example": [
+                                {
+                                    "name": "brand1",
+                                    "logo": "logo1"
+                                },
+                                {
+                                    "name": "brandName2",
+                                    "logo": "logo2"
+                                },
+                                {
+                                    "name": "brand3",
+                                    "logo": "logo3"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "ff65b0f1-089b-4b11-a980-33313a77bd59"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "brand1"
+                                                    },
+                                                    "logo": {
+                                                        "type": "string",
+                                                        "example": "logo1"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-07 21:38:57"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "data": [
+                                        {
+                                            "id": "ff65b0f1-089b-4b11-a980-33313a77bd59",
+                                            "name": "brand1",
+                                            "logo": "logo1",
+                                            "created_at": "2025-01-07 21:38:57"
+                                        },
+                                        {
+                                            "id": "f8688da3-c7ea-491b-a4b8-b2d735b4d678",
+                                            "name": "brandName2",
+                                            "logo": "logo2",
+                                            "created_at": "2025-01-07 21:38:57"
+                                        },
+                                        {
+                                            "id": "381cba3d-2c05-43ee-94d1-4c76779dd64c",
+                                            "name": "brand3",
+                                            "logo": "logo3",
+                                            "created_at": "2025-01-07 21:38:57"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response401"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response422"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Response401": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "Unauthorized"
+                    }
+                },
+                "type": "object"
+            },
+            "Response422": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "errors": {
+                        "type": "object",
+                        "example": []
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Brand",
+            "description": "Brand"
+        }
+    ]
+}
