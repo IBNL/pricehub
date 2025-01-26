@@ -1,6 +1,7 @@
 /vendor/
 anotacoes.txt
 .env
+.env.testing
 .docker/dbdata/
 .phpunit.result.cache
 /.idea
