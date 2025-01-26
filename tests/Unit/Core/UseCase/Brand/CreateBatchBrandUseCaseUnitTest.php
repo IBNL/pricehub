@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\UseCase\Brand;
+namespace Tests\Unit\Core\UseCase\Brand;
 
 use Core\Domain\Entity\BrandEntity;
 use Core\Domain\Repository\BrandRepositoryInterface;
