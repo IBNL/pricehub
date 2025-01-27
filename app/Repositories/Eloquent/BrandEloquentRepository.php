@@ -33,4 +33,17 @@ class BrandEloquentRepository implements BrandRepositoryInterface
     return $brands;
   }
 
+  public function getBrandNeedCreate(array $brands): array
+  {
+    $brandsUnique = collect($brands)->unique('name')->values()->all();
+
+    $brandsInDatabase = $this->model::all()->pluck('name')->toArray();
+
+    $brandNeedCreate = array_filter($brandsUnique, function ($brand) use ($brandsInDatabase) {
+      return !in_array($brand['name'], $brandsInDatabase);
+    });
+
+    return $brandNeedCreate;
+  }
+
 }
