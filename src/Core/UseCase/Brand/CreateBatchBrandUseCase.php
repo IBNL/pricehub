@@ -16,8 +16,10 @@ class CreateBatchBrandUseCase
 
   public function execute(CreateBatchInputBrandDTO $input): CreateBatchOutputBrandDTO
   {
+    $brands = $this->brandRepository->getBrandNeedCreate(brands: $input->data);
+
     $brandEntities = [];
-    foreach ($input->data as $brand) {
+    foreach ($brands as $brand) {
       $brandEntity = new BrandEntity(
         name: $brand['name'],
         logo: $brand['logo'] ?? ''

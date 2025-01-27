@@ -17,7 +17,17 @@ class CreateBatchBrandUseCaseUnitTest extends TestCase
   public function test_create(): void
   {
     //arrange
-    $brands = [
+    $brandsInput = [
+      ['name' => 'BrandName1', 'logo' => 'logo1.png'],
+      ['name' => 'BrandName2', 'logo' => 'logo2.png'],
+      ['name' => 'BrandName2', 'logo' => 'logo2.png'],
+      ['name' => 'BrandName3', 'logo' => ''],
+      ['name' => 'BrandNameExist1', 'logo' => 'logoExist1.png'],
+      ['name' => 'BrandNameExist2', 'logo' => 'logoExist2.png'],
+      ['name' => 'BrandNameExist3', 'logo' => 'logoExist3.png'],
+    ];
+
+    $brandsNeedCreate = [
       ['name' => 'BrandName1', 'logo' => 'logo1.png'],
       ['name' => 'BrandName2', 'logo' => 'logo2.png'],
       ['name' => 'BrandName3', 'logo' => ''],
@@ -28,9 +38,14 @@ class CreateBatchBrandUseCaseUnitTest extends TestCase
         'name' => $brand['name'],
         'logo' => $brand['logo'],
       ]);
-    }, $brands);
+    }, $brandsNeedCreate);
 
     $mockBrandRepository = Mockery::mock(stdClass::class, BrandRepositoryInterface::class);
+    
+    $mockBrandRepository->shouldReceive('getBrandNeedCreate')
+      ->once()
+      ->andReturn($brandsNeedCreate);
+
     $mockBrandRepository->shouldReceive('insertBatch')
       ->once()
       ->andReturn($mockEntities);
@@ -40,7 +55,7 @@ class CreateBatchBrandUseCaseUnitTest extends TestCase
       brandRepository: $mockBrandRepository
     );
 
-    $mockCreateInputBrandDTO = Mockery::mock(CreateBatchInputBrandDTO::class, [$brands]);
+    $mockCreateInputBrandDTO = Mockery::mock(CreateBatchInputBrandDTO::class, [$brandsInput]);
 
     //action
     $response = $useCase->execute(input: $mockCreateInputBrandDTO);
