@@ -6,10 +6,9 @@ use App\Models\BrandModel;
 use App\Repositories\Eloquent\BrandEloquentRepository;
 use Core\Domain\Entity\BrandEntity;
 use Core\Domain\Repository\BrandRepositoryInterface;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use DB;
+use PHPUnit\Framework\Attributes\DataProvider;
+
 
 
 class BrandEloquentRepositoryTest extends TestCase
@@ -89,4 +88,85 @@ class BrandEloquentRepositoryTest extends TestCase
 
   }
 
+  #[DataProvider('dataProviderIndex')]
+  public function test_index(
+    array $filterData
+  ): void {
+    //arrange
+    BrandModel::insert([
+      ['id' => 'e27f1d4c-cf62-4b8e-b9c2-688f3f49314f', 'name' => 'BrandNameExist1', 'logo' => 'logoExist1.png', 'deleted_at' => null],
+      ['id' => '31f41cf4-e3c9-4ed9-b0c3-d7aafba76ff4', 'name' => 'BrandNameExist2', 'logo' => 'logoExist2.png', 'deleted_at' => null],
+      ['id' => '0546cf92-4f3a-44a5-9c6e-351e8a6df4a3', 'name' => 'BrandNameExist3', 'logo' => 'logoExist3.png', 'deleted_at' => null],
+      ['id' => 'b53bdb4f-6974-4be0-b54d-cb7e9a7f210d', 'name' => 'BrandNameDeleted', 'logo' => 'logoDeleted1.png', 'deleted_at' => '2024-08-07 23:45:09'],
+    ]);
+
+    // action
+    $response = $this->repository->index($filterData['value']);
+
+    // assert
+    $this->assertEquals($response, $filterData['expectedData']);
+    $this->assertCount($filterData['expectedCount'], $response);
+  }
+
+  public static function dataProviderIndex(): array
+  {
+    return [
+      'filter 1 item with nameScope' => [
+        'filterData' => [
+          'value' => [
+            'name' => 'BrandNameExist1'
+          ],
+          'expectedCount' => 1,
+          'expectedData' => [
+            [
+              "id" => "e27f1d4c-cf62-4b8e-b9c2-688f3f49314f",
+              "name" => "BrandNameExist1",
+              "logo" => "logoExist1.png"
+            ]
+          ]
+        ],
+      ],
+      'filter deleted item' => [
+        'filterData' => [
+          'value' => [
+            'name' => 'BrandNameDeleted'
+          ],
+          'expectedCount' => 0,
+          'expectedData' => []
+        ],
+      ],
+      'empty filter' => [
+        'filterData' => [
+          'value' => [],
+          'expectedCount' => 3,
+          'expectedData' => [
+            [
+              "id" => "e27f1d4c-cf62-4b8e-b9c2-688f3f49314f",
+              "name" => "BrandNameExist1",
+              "logo" => "logoExist1.png"
+            ],
+            [
+              "id" => "31f41cf4-e3c9-4ed9-b0c3-d7aafba76ff4",
+              "name" => "BrandNameExist2",
+              "logo" => "logoExist2.png"
+            ],
+            [
+              "id" => "0546cf92-4f3a-44a5-9c6e-351e8a6df4a3",
+              "name" => "BrandNameExist3",
+              "logo" => "logoExist3.png"
+            ]
+          ]
+        ],
+      ],
+      'filter item not exist' => [
+        'filterData' => [
+          'value' => [
+            'name' => 'notExist'
+          ],
+          'expectedCount' => 0,
+          'expectedData' => []
+        ],
+      ],
+    ];
+  }
 }

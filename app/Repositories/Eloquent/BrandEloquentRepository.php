@@ -14,6 +14,20 @@ class BrandEloquentRepository implements BrandRepositoryInterface
   ) {
   }
 
+  public function index(array $filterData = []): array
+  {
+    $query = BrandModel::select(
+      'id',
+      'name',
+      'logo'
+    );
+    if ($filterData) {
+      $query->filter(collect($filterData));
+    }
+
+    return $query->get()->toArray();
+  }
+
   public function insertBatch(array $data): array
   {
     $brands = [];

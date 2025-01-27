@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 class BrandModel extends Model
 {
@@ -28,4 +30,15 @@ class BrandModel extends Model
     'deleted_at' => 'datetime',
   ];
 
+  public function scopeFilter(Builder $query, Collection $data)
+    {
+        $query->name($data);
+    }
+
+    public function scopeName(Builder $query, Collection $data): void
+    {
+        if ($data->get('name')) {
+            $query->where('brands.name', $data['name']);
+        }
+    }
 }
