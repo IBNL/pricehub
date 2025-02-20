@@ -39,6 +39,15 @@ class ExtractionSeeder extends Seeder
         'is_active' => '1',
         'settings' => '{"url": "https://servicespub.prod.api.aws.grupokabum.com.br/catalog/v2/products-by-category/hardware/placas-mae?page_number={}&page_size=100&facet_filters=eyJrYWJ1bV9wcm9kdWN0IjpbInRydWUiXX0%3D&sort=price", "store": {"id": "564dcda8-52a0-11ef-86b9-0242ac120003", "name": "kabum", "filesystem": {"name": "fs"}, "browser_provider": {"name": "puppeteer", "options": {"headless": false}}, "html_parse_provider": {"name": "cheerio"}}}',
         'created_at' => '2024-10-15 22:51:53',
+      ],
+      [
+        'id' => '99803007-52a0-11ef-86b9-0242ac120003',
+        'ecommerce_id' => '564dcda8-52a0-11ef-86b9-0242ac120003',
+        'extraction_type_id' => '29df6f23-52a0-11ef-86b9-0242ac120003',
+        'subcategory_id' => '0f1ff8d3-52a0-11ef-86b9-0242ac120003',
+        'is_active' => '1',
+        'settings' => '{"url": "https://servicespub.prod.api.aws.grupokabum.com.br/catalog/v2/products-by-category/hardware/memoria-ram?page_number={}&page_size=100&facet_filters=eyJrYWJ1bV9wcm9kdWN0IjpbInRydWUiXX0%3D&sort=price", "store": {"id": "564dcda8-52a0-11ef-86b9-0242ac120003", "name": "kabum", "filesystem": {"name": "fs"}, "browser_provider": {"name": "puppeteer", "options": {"headless": false}}, "html_parse_provider": {"name": "cheerio"}}}',
+        'created_at' => '2024-08-04 20:31:59',
       ]
     ];
 
