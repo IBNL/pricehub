@@ -1,0 +1,48 @@
+{
+  "products": [
+    {
+      "url": "https://www.kabum.com.br/produto/102447",
+      "name": "memória ram para notebook rise mode, 4gb, 1600mhz, ddr3, cl11 - rm-d3-4g1600n",
+      "brand": "rise mode",
+      "image": "https://images.kabum.com.br/produtos/fotos/102447/memoria-rise-mode-4gb-1600mhz-ddr3-notebook-rm-d3-4g1600n_memoria-rise-mode-4gb-1600mhz-ddr3-notebook-rm-d3-4g1600n_1563971973_original.jpg",
+      "price": 49.99,
+      "availability": true
+    },
+    {
+      "url": "https://www.kabum.com.br/produto/99428",
+      "name": "memória ram rise mode, 4gb, 1600mhz, ddr3, cl11 - rm-d3-4g1600v",
+      "brand": "rise mode",
+      "image": "https://images.kabum.com.br/produtos/fotos/99428/memoria-rise-mode-4gb-1600mhz-ddr3-rm-d3-4g1600v_1563977068_original.jpg",
+      "price": 69.99,
+      "availability": true
+    },
+    {
+      "url": "https://www.kabum.com.br/produto/551170",
+      "name": "memória para notebook brazilpc, 4gb, 1333mhz, ddr3l, cl09, 1.35v - bpc1333d3lcl9s/4g",
+      "brand": "brazil pc",
+      "image": "https://images.kabum.com.br/produtos/fotos/551170/memoria-para-notebook-brazilpc-4gb-1333mhz-ddr3l-cl09-1-35v-bpc1333d3lcl9s-4g_1719518450_original.jpg",
+      "price": 40,
+      "availability": true
+    },
+    {
+      "url": "https://www.kabum.com.br/produto/110937",
+      "name": "memória ram para notebook corsair vengeance, 4gb, 2400mhz, ddr4, cl16 - cmsx4gx4m1a2400c16",
+      "brand": "samsung",
+      "image": "https://images.kabum.com.br/produtos/fotos/110937/memoria-corsair-vengeance-para-notebook-4gb-2400mhz-ddr4-c16-cmsx4gx4m1a2400c16_1590170175_original.jpg",
+      "price": 125,
+      "availability": true
+  },
+  {
+    "url": "https://www.kabum.com.br/produto/999999",
+    "name": "produto com preco vazio para teste",
+    "brand": "samsung",
+    "image": "imagem do produto que nao preco",
+    "price": null,
+    "availability": true
+}
+  ],
+  "ecommerce_id": "564dcda8-52a0-11ef-86b9-0242ac120003",
+  "extraction_id": "99803007-52a0-11ef-86b9-0242ac120003",
+  "reference_date": "2024-08-20",
+  "subcategory_id": "0f1ff8d3-52a0-11ef-86b9-0242ac120003"
+}
