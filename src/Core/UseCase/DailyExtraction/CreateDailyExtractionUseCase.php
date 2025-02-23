@@ -3,7 +3,7 @@
 namespace Core\UseCase\DailyExtraction;
 
 use Core\Domain\Entity\DailyExtractionEntity;
-use Core\Domain\Repository\DailyExtractionInterface;
+use Core\Domain\Repository\DailyExtractionRepositoryInterface;
 use Core\Domain\Repository\ExtractionRepositoryInterface;
 use Core\Domain\ValueObject\ValueObjectUuid;
 use Core\UseCase\DailyExtraction\DTO\CreateBatchOutputDailyExtractionDTO;
@@ -13,7 +13,7 @@ class CreateDailyExtractionUseCase
 {
   public function __construct(
     protected ExtractionRepositoryInterface $extractionRepository,
-    protected DailyExtractionInterface $dailyExtractionRepository
+    protected DailyExtractionRepositoryInterface $dailyExtractionRepository
 
   ) {
   }

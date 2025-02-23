@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Core\UseCase\DailyExtraction;
 
-use Core\Domain\Repository\DailyExtractionInterface;
+use Core\Domain\Repository\DailyExtractionRepositoryInterface;
 use Core\Domain\Repository\ExtractionRepositoryInterface;
 use Core\UseCase\DailyExtraction\CreateDailyExtractionUseCase;
 use Core\UseCase\DailyExtraction\DTO\CreateBatchOutputDailyExtractionDTO;
@@ -22,7 +22,7 @@ class CreateDailyExtractionUseCaseUnitTest extends TestCase
       ->andReturn([]);
 
 
-    $mockDailyExtractionRepository = Mockery::mock(stdClass::class, DailyExtractionInterface::class);
+    $mockDailyExtractionRepository = Mockery::mock(stdClass::class, DailyExtractionRepositoryInterface::class);
 
     $useCase = new CreateDailyExtractionUseCase(
       extractionRepository: $mockExtractionRepository,
@@ -47,7 +47,7 @@ class CreateDailyExtractionUseCaseUnitTest extends TestCase
       ->andReturn($this->getDailyExtractionData());
 
 
-    $mockDailyExtractionRepository = Mockery::mock(stdClass::class, DailyExtractionInterface::class);
+    $mockDailyExtractionRepository = Mockery::mock(stdClass::class, DailyExtractionRepositoryInterface::class);
     $mockDailyExtractionRepository->shouldReceive('insertBatch')
       ->once()
       ->andReturn($this->getDailyExtractionData());

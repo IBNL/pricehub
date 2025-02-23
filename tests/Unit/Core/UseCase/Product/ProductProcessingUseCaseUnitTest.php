@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\UseCase\Product;
 
 use Core\Domain\Entity\BrandEntity;
 use Core\Domain\Repository\BrandRepositoryInterface;
-use Core\Domain\Repository\DailyExtractionInterface;
+use Core\Domain\Repository\DailyExtractionRepositoryInterface;
 use Core\Domain\Repository\ProductRepositoryInterface;
 use Core\UseCase\Product\DTO\ProductProcessingInputDto;
 use Core\UseCase\Product\ProductProcessingUseCase;
@@ -117,7 +117,7 @@ class ProductProcessingUseCaseUnitTest extends TestCase
       ->once();
 
 
-    $mockDailyExtractionRepository = Mockery::mock(stdClass::class, DailyExtractionInterface::class);
+    $mockDailyExtractionRepository = Mockery::mock(stdClass::class, DailyExtractionRepositoryInterface::class);
 
     $useCase = new ProductProcessingUseCase(
       brandRepository: $mockBrandRepository,

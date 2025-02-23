@@ -5,13 +5,13 @@ namespace App\Repositories\Eloquent;
 use App\Models\DailyExtractionModel;
 use Core\Domain\Entity\DailyExtractionEntity;
 use Core\Domain\Exception\NotFoundException;
-use Core\Domain\Repository\DailyExtractionInterface;
+use Core\Domain\Repository\DailyExtractionRepositoryInterface;
 use Core\Domain\ValueObject\ValueObjectUuid;
 use DateTime;
 use DB;
 
 
-class DailyExtractionEloquentRepository implements DailyExtractionInterface
+class DailyExtractionEloquentRepository implements DailyExtractionRepositoryInterface
 {
 
   public function __construct(

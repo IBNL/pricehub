@@ -6,7 +6,7 @@ use Core\Domain\Entity\BrandEntity;
 use Core\Domain\Entity\PriceHistoryExtractionEntity;
 use Core\Domain\Entity\ProductEntity;
 use Core\Domain\Repository\BrandRepositoryInterface;
-use Core\Domain\Repository\DailyExtractionInterface;
+use Core\Domain\Repository\DailyExtractionRepositoryInterface;
 use Core\Domain\Repository\PriceHistoryExtractionRepositoryInterface;
 use Core\Domain\Repository\ProductRepositoryInterface;
 use Core\Domain\ValueObject\ValueObjectUuid;
@@ -28,7 +28,7 @@ class ProductProcessingUseCase
     private BrandRepositoryInterface $brandRepository,
     private ProductRepositoryInterface $productRepository,
     private PriceHistoryExtractionRepositoryInterface $priceHistoryExtractionRepository,
-    private DailyExtractionInterface $dailyExtractionRepository//add repository no nome
+    private DailyExtractionRepositoryInterface $dailyExtractionRepository
   ) {
   }
 

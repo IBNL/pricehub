@@ -7,7 +7,7 @@ use App\Models\ExtractionModel;
 use App\Repositories\Eloquent\DailyExtractionEloquentRepository;
 use App\Repositories\Eloquent\ExtractionEloquentRepository;
 use Core\Domain\Entity\DailyExtractionEntity;
-use Core\Domain\Repository\DailyExtractionInterface;
+use Core\Domain\Repository\DailyExtractionRepositoryInterface;
 use Core\Domain\ValueObject\ValueObjectUuid;
 use DateTime;
 use Illuminate\Support\Facades\Artisan;
@@ -31,7 +31,7 @@ class DailyExtractionEloquentRepositoryTest extends TestCase
 
   public function testCheckImplementsInterfaceRepository()
   {
-    $this->assertInstanceOf(DailyExtractionInterface::class, $this->dailyExtractionRepository);
+    $this->assertInstanceOf(DailyExtractionRepositoryInterface::class, $this->dailyExtractionRepository);
   }
 
   public function testInsertBatch()
