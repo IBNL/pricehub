@@ -206,6 +206,33 @@ class ProductProcessingUseCaseTest extends TestCase
           'productsNeedUpdateData' => ProductProcessingUseCaseTest::getProductsUpdateFile520Products(file_path: 'tests/files/kabum_memoria_ram_520_produtos.json')
         ],
       ],
+      'ecommerce: terabyte | subcategory: processador | brands: 0 | products: 64' => [
+        'data' => [
+          'file_path' => 'tests/files/terabyte_processador_64_produtos.json',
+          'brandsDatabaseCount' => 0,
+          'brandsToInsertBatch' => [],
+          'brandsNeedCreateData' => [],
+          'productsNeedCreateCount' => 64,
+          'productsNeedCreateData' => ProductProcessingUseCaseTest::getProductsFile520Products(file_path: 'tests/files/terabyte_processador_64_produtos.json'),
+          'dailyExtractionToInsertBatch' => [
+            [
+              'id' => '1564b615-f9fd-4c14-bde0-529de8f46c87',
+              'extraction_id' => '99803007-52a0-11ef-86b9-0242ac120003',
+              'input' => '{"settings": "{"url": "https://www.terabyteshop.com.br/hardware/processadores", "store": {"id": "734c93d1-8b47-11ef-a076-0242ac120003", "name": "terabyteshop", "filesystem": {"name": "fs"}, "browser_provider": {"name": "puppeteer", "options": {"headless": false}}, "html_parse_provider": {"name": "cheerio"}}}", "file_path": "src/Storage/a6bae089-8c0b-11ef-b927-0242ac120002/2025/2/28/", "ecommerce_id": "734c93d1-8b47-11ef-a076-0242ac120003", "extraction_id": "99803007-52a0-11ef-86b9-0242ac120003", "reference_date": "2025-02-28", "subcategory_id": "3e9e9383-537d-11ef-9847-0242ac120003", "send_to_process": 1, "extraction_success": 0, "extraction_type_id": "29df6f23-52a0-11ef-86b9-0242ac120003", "extraction_type_name": "subcategoria"}',
+              'extraction_success' => false,
+              'reference_date' => '2025-02-28',
+              'send_to_process' => true,
+              'created_at' => '2025-02-28 20:31:59',
+            ]
+          ],
+          'dailyExtractionsCount' => 1,
+          'priceHistoryExtractionsCount' => 64,
+          'priceHistoryExtractionPriceNeedCreateData' => ProductProcessingUseCaseTest::getPriceHistoryExtractionFile520Products(file_path: 'tests/files/terabyte_processador_64_produtos.json'),
+          'extraction_success' => true,
+          'productsNeedUpdateData' => ProductProcessingUseCaseTest::getProductsUpdateFile520Products(file_path: 'tests/files/terabyte_processador_64_produtos.json')
+        ],
+      ],
+
     ];
   }
 

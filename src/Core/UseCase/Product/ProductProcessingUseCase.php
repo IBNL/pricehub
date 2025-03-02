@@ -60,7 +60,9 @@ class ProductProcessingUseCase
   {
     $brands = [];
     foreach ($this->productsFromQueue as $product) {
-      $brands[] = ['name' => $product->brand];
+      if (isset($product->brand)) {
+        $brands[] = ['name' => $product->brand];
+      }
     }
 
     $brandsNeedCreate = $this->brandRepository->getBrandNeedCreate($brands);
@@ -133,7 +135,7 @@ class ProductProcessingUseCase
           #slug: $product->slug,
           available: $product->available,
           ecommerce_id: new ValueObjectUuid($product->ecommerce_id) ?? null,
-          brand_id: new ValueObjectUuid($product->brand_id) ?? null,
+          brand_id: isset($product->brand_id) ? new ValueObjectUuid($product->brand_id) : null,
           subcategory_id: new ValueObjectUuid($product->subcategory_id) ?? null,
           last_date_price: $product->last_date_price ?? null,
           last_price: $product->last_price ?? null,
@@ -219,7 +221,7 @@ class ProductProcessingUseCase
         name: $item->name,
         available: true,
         ecommerce_id: new ValueObjectUuid($item->ecommerce_id),
-        brand_id: new ValueObjectUuid($item->brand_id),
+        brand_id: isset($product->brand_id) ? new ValueObjectUuid($item->brand_id) : null,
         subcategory_id: new ValueObjectUuid($item->subcategory_id),
         last_date_price: new DateTime($this->reference_date),
         last_price: $item->price,
@@ -228,7 +230,7 @@ class ProductProcessingUseCase
 
       array_push($productsEntitiesToUpdate, $productEntity);
     }
-    $this->productRepository->updateBatch(data:$productsEntitiesToUpdate);
+    $this->productRepository->updateBatch(data: $productsEntitiesToUpdate);
   }
 
 
