@@ -4,10 +4,12 @@ namespace Tests\Unit\Core\UseCase\DailyExtraction;
 
 use Core\Domain\Repository\DailyExtractionRepositoryInterface;
 use Core\Domain\Repository\ExtractionRepositoryInterface;
+use Core\Domain\Services\Queue\QueueInterface;
 use Core\UseCase\DailyExtraction\CreateDailyExtractionUseCase;
 use Core\UseCase\DailyExtraction\DTO\CreateBatchOutputDailyExtractionDTO;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+
 use stdClass;
 
 class CreateDailyExtractionUseCaseUnitTest extends TestCase
@@ -24,9 +26,14 @@ class CreateDailyExtractionUseCaseUnitTest extends TestCase
 
     $mockDailyExtractionRepository = Mockery::mock(stdClass::class, DailyExtractionRepositoryInterface::class);
 
+    $mockAwsSqsService = Mockery::mock(stdClass::class, QueueInterface::class);
+    $mockAwsSqsService->shouldReceive('sendMessagesBatch')
+    ->andReturn([]);
+    
     $useCase = new CreateDailyExtractionUseCase(
       extractionRepository: $mockExtractionRepository,
-      dailyExtractionRepository: $mockDailyExtractionRepository
+      dailyExtractionRepository: $mockDailyExtractionRepository,
+      queueService:$mockAwsSqsService
     );
 
     // action
@@ -52,9 +59,16 @@ class CreateDailyExtractionUseCaseUnitTest extends TestCase
       ->once()
       ->andReturn($this->getDailyExtractionData());
 
+    $mockAwsSqsService = Mockery::mock(stdClass::class, QueueInterface::class);
+    $mockAwsSqsService->shouldReceive('sendMessagesBatch')
+    ->once()
+    ->andReturn([]);
+
+    
     $useCase = new CreateDailyExtractionUseCase(
       extractionRepository: $mockExtractionRepository,
-      dailyExtractionRepository: $mockDailyExtractionRepository
+      dailyExtractionRepository: $mockDailyExtractionRepository,
+      queueService:$mockAwsSqsService
     );
 
     // action
