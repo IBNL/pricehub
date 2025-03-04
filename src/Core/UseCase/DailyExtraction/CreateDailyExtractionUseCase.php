@@ -46,8 +46,7 @@ class CreateDailyExtractionUseCase
 
     // enviar para fila
     $this->queueService->sendMessagesBatch(
-      //queueUrl: config('queue.connections.sqs.subcategory_queue'),
-      queueUrl:'https://sqs.sa-east-1.amazonaws.com/009160032176/production_subcategory_extractions',
+      queueUrl: config('queue.connections.sqs.subcategory_queue'),
       messages: $dailyExtractionData
     );
 

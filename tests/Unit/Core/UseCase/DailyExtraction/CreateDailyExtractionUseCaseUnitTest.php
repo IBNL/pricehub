@@ -8,7 +8,8 @@ use Core\Domain\Services\Queue\QueueInterface;
 use Core\UseCase\DailyExtraction\CreateDailyExtractionUseCase;
 use Core\UseCase\DailyExtraction\DTO\CreateBatchOutputDailyExtractionDTO;
 use Mockery;
-use PHPUnit\Framework\TestCase;
+//use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 use stdClass;
 
