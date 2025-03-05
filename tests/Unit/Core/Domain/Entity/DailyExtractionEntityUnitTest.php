@@ -124,5 +124,67 @@ class DailyExtractionEntityUnitTest extends TestCase
       ],
     ];
   }*/
+
+  public function test_update(): void
+  {
+    $input = '{
+      "settings": "{\"url\": \"https://servicespub.prod.api.aws.grupokabum.com.br/catalog/v2/products-by-category/hardware/placa-de-video-vga?page_number={}&page_size=100&facet_filters=eyJrYWJ1bV9wcm9kdWN0IjpbInRydWUiXX0%3D&sort=price\", \"store\": {\"id\": \"564dcda8-52a0-11ef-86b9-0242ac120003\", \"name\": \"kabum\", \"filesystem\": {\"name\": \"fs\"}, \"browser_provider\": {\"name\": \"puppeteer\", \"options\": {\"headless\": false}}, \"html_parse_provider\": {\"name\": \"cheerio\"}}}",
+      "file_path": "src/Storage/f0655dc2-537c-11ef-9847-0242ac120003/2024/8/14/",
+      "ecommerce_id": "564dcda8-52a0-11ef-86b9-0242ac120003",
+      "extraction_id": "f0655dc2-537c-11ef-9847-0242ac120003",
+      "reference_date": "2024-08-14",
+      "subcategory_id": "ff1c56e6-537b-11ef-9847-0242ac120003",
+      "send_to_process": 1,
+      "extraction_success": 0,
+      "extraction_type_id": "29df6f23-52a0-11ef-86b9-0242ac120003",
+      "extraction_type_name": "subcategoria"
+  }';
+
+    $output = '{
+    "products": [
+      {
+        "url": "https://www.kabum.com.br/produto/506094",
+        "name": "placa de vídeo quadro a800 pny nvidia, 40gb hbm2, 5120bits - vcna800-pb",
+        "brand": "pny",
+        "image": "https://images.kabum.com.br/produtos/fotos/506094/placa-de-video-a800-pny-nvidia-40gb-hbm2-5120bits-vcna800-pb_1718283743_original.jpg",
+        "price": 92999.99,
+        "availability": true
+      }
+    ],
+    "ecommerce_id": "564dcda8-52a0-11ef-86b9-0242ac120003",
+    "extraction_id": "f0655dc2-537c-11ef-9847-0242ac120003",
+    "reference_date": "2024-08-14",
+    "subcategory_id": "ff1c56e6-537b-11ef-9847-0242ac120003"
+  }';
+
+    $id = new ValueObjectUuid('00536f63-7418-442f-818e-3d34f877da0e');
+    $dailyExtractionEntity = new DailyExtractionEntity(
+      id: $id,
+      extraction_id: ValueObjectUuid::create(),
+      reference_date: new DateTime(),
+      input: $input,
+      output: null,
+      extraction_success: false,
+      send_to_process: true
+    );
+
+    $this->assertEquals($dailyExtractionEntity->id(), $id);
+    $this->assertEquals($dailyExtractionEntity->input, $input);
+    $this->assertNull($dailyExtractionEntity->output);
+    $this->assertFalse($dailyExtractionEntity->extraction_success);
+    $this->assertNotEmpty($dailyExtractionEntity->createdAt());
+
+    $dailyExtractionEntity->update(
+      extraction_success: true,
+      output: $output,
+    );
+
+    $this->assertEquals($dailyExtractionEntity->id(), $id);
+    $this->assertEquals($dailyExtractionEntity->output, $output);
+    $this->assertNotNull($dailyExtractionEntity->input);
+    $this->assertNotEmpty($dailyExtractionEntity->createdAt());
+
+  }
+
 }
 

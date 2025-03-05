@@ -5,9 +5,11 @@ namespace App\Providers;
 use App\Repositories\Eloquent\BrandEloquentRepository;
 use App\Repositories\Eloquent\DailyExtractionEloquentRepository;
 use App\Repositories\Eloquent\ExtractionEloquentRepository;
+use App\Services\Queue\AwsSqsService;
 use Core\Domain\Repository\BrandRepositoryInterface;
-use Core\Domain\Repository\DailyExtractionInterface;
+use Core\Domain\Repository\DailyExtractionRepositoryInterface;
 use Core\Domain\Repository\ExtractionRepositoryInterface;
+use Core\Domain\Services\Queue\QueueInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,8 +33,16 @@ class AppServiceProvider extends ServiceProvider
     );
 
     $this->app->singleton(
-      DailyExtractionInterface::class,
+      DailyExtractionRepositoryInterface::class,
       DailyExtractionEloquentRepository::class
+    );
+
+    /**
+     * Services
+     */
+    $this->app->bind(
+      QueueInterface::class,
+      AwsSqsService::class,
     );
   }
 

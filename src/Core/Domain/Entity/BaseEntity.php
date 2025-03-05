@@ -10,14 +10,20 @@ abstract class BaseEntity
 {
   protected $notification;
 
+
   public function __construct()
   {
     $this->notification = new Notification();
   }
 
+
+
+
   public function __get($property)
   {
-    if (isset($this->{$property})) {
+    // property_exists: retorna true se a propriedade existe no objeto, independentemente do seu valor (incluindo se o valor for null).
+    // isset: retorna true apenas se a variável estiver definida e seu valor não for null    
+    if (property_exists($this, $property)) {
       return $this->{$property};
     }
 

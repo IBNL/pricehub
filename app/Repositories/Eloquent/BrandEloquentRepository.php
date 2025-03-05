@@ -14,6 +14,20 @@ class BrandEloquentRepository implements BrandRepositoryInterface
   ) {
   }
 
+  public function index(array $filterData = []): array
+  {
+    $query = BrandModel::select(
+      'id',
+      'name',
+      'logo'
+    );
+    if ($filterData) {
+      $query->filter(collect($filterData));
+    }
+
+    return $query->get()->toArray();
+  }
+
   public function insertBatch(array $data): array
   {
     $brands = [];
@@ -31,6 +45,19 @@ class BrandEloquentRepository implements BrandRepositoryInterface
     });
 
     return $brands;
+  }
+
+  public function getBrandNeedCreate(array $brands): array
+  {
+    $brandsUnique = collect($brands)->unique('name')->values()->all();
+
+    $brandsInDatabase = $this->model::all()->pluck('name')->toArray();
+
+    $brandNeedCreate = array_filter($brandsUnique, function ($brand) use ($brandsInDatabase) {
+      return !in_array($brand['name'], $brandsInDatabase);
+    });
+
+    return $brandNeedCreate;
   }
 
 }

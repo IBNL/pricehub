@@ -8,6 +8,7 @@ use App\Repositories\Eloquent\DailyExtractionEloquentRepository;
 use App\Repositories\Eloquent\ExtractionEloquentRepository;
 use Core\UseCase\DailyExtraction\CreateDailyExtractionUseCase;
 use Illuminate\Support\Facades\Artisan;
+use Tests\Stubs\AwsSqsServiceStub;
 use Tests\TestCase;
 
 class CreateDailyExtractionUseCaseTest extends TestCase
@@ -27,9 +28,12 @@ class CreateDailyExtractionUseCaseTest extends TestCase
     $dailyExtractionModel = new DailyExtractionModel();
     $dailyExtractionEloquentRepository = new DailyExtractionEloquentRepository(model: $dailyExtractionModel);
 
+    $awsSqsService = new AwsSqsServiceStub();
+
     $createDailyExtractionUseCase = new CreateDailyExtractionUseCase(
       extractionRepository: $extractionEloquentRepository,
-      dailyExtractionRepository: $dailyExtractionEloquentRepository
+      dailyExtractionRepository: $dailyExtractionEloquentRepository,
+      queueService: $awsSqsService
 
     );
     // action
