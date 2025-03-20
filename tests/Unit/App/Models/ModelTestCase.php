@@ -33,7 +33,7 @@ abstract class ModelTestCase extends TestCase
     $this->assertEquals($expected, $fillable);
   }
 
-  public function testIncrementingIsFalse()
+  public function testIncrementing()
   {
     $model = $this->model();
 
