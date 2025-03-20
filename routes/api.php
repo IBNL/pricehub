@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Route;
 
 $pathV1 = 'routes/v1';
 
-Route::prefix('v1')->group(function () use($pathV1){
-  Route::prefix('brand')->group(base_path($pathV1 . '/BrandRoute.php'));
-  Route::prefix('daily-extraction')->group(base_path($pathV1 . '/DailyExtractionRoute.php'));
+Route::prefix('v1')->group(function () use ($pathV1) {
 
+  Route::middleware('auth:sanctum')->group(function () use ($pathV1) {
+    Route::prefix('brand')->group(base_path($pathV1 . '/BrandRoute.php'));
+    Route::prefix('daily-extraction')->group(base_path($pathV1 . '/DailyExtractionRoute.php'));
+  });
+
+  Route::prefix('authenticate')->group(base_path($pathV1 . '/AuthenticateRoute.php'));
 });
