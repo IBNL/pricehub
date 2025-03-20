@@ -2,12 +2,15 @@
 
 namespace Tests\Feature\Api\DailyExtraction;
 
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 class CreateDailyExtractionApiTest extends TestCase
 {
+  use WithoutMiddleware;
+
   public function setUp(): void
   {
     parent::setUp();
@@ -20,7 +23,7 @@ class CreateDailyExtractionApiTest extends TestCase
     // arrange
 
     // action
-    $response = $this->post(uri: $this->endpoint);
+    $response = $this->postJson(uri: $this->endpoint);
 
     // assert
     $response->assertStatus(Response::HTTP_OK);
@@ -33,7 +36,7 @@ class CreateDailyExtractionApiTest extends TestCase
     Artisan::call(command: 'db:seed');
   
     // action
-    $response = $this->post(uri: $this->endpoint);
+    $response = $this->postJson(uri: $this->endpoint);
     
     // assert
     $response->assertStatus(Response::HTTP_CREATED);
