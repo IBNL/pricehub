@@ -1,5 +1,6 @@
 <?php
 
+use Core\Domain\Exception\UnauthorizedException;
 use Core\Domain\Notification\NotificationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -18,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
   })
   ->withExceptions(function (Exceptions $exceptions) {
     $exceptions->render(function (NotificationException $exception) {
+      return response()->json(["message" => $exception->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
+    });
+    $exceptions->render(function (UnauthorizedException $exception) {
       return response()->json(["message" => $exception->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
     });
   })->create();
